@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Box Shooter</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--# CDN #-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!--####-->
+    
+        <!--# CSS #-->
+        <link rel="stylesheet" href="F:/Sem - 3/Web Technologies I/Assignment/Site/Front End/CSS/Site_Style.css">
+        <link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Luckiest Guy' rel='stylesheet'>
+        <link rel="stylesheet" href="F:/Sem - 3/Web Technologies I/Assignment/Site/Front End/Transition/transit.css">
+        <!--####-->
+
+        <!--# Unity #-->
+        <link rel="shortcut icon" href="Games/Box Shooter/TemplateData/favicon.ico">
+        <link rel="stylesheet" href="Games/Box Shooter/TemplateData/style.css">
+
+        <!--####-->
+
+        <style>
+            a:hover
+            {
+                background-color: rgba(0, 102, 255, 0.5);
+                color:white;
+            }
+            .outercard
+            {
+                height: 80%;
+                width: 70%;
+                background-color: rgba(0, 0, 0, 0.815);
+                opacity:1;
+                position: absolute;
+
+                margin: auto;
+                
+            }
+            .infocard
+            {
+                height: 50%;
+                width: 70%;
+                background-color: rgba(0, 0, 0, 0.877);
+                opacity:1;
+                position: absolute;
+
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg_gradient_b"></div><!--background gradient[blue].-->
+        <div id="out_square"><div id="out_text"><h1 class="arcadia">ARCADIA</h1></div></div><!--Elements for transition-->
+        <nav class="navbar navbar-expand-sm justify-content-center nav_bar"> <!--navigation bar-->
+            <!--
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="logo" style="width:40px;">
+            </a>
+            -->
+            <div id="nvg">
+            <ul class="navbar-nav" >
+                <li class="nav-item nav_op" >
+                    <a class="nav-link nav_link_b" id="home" href="#homepage">HOME</a>
+                </li>
+                <li class="nav-item nav_op">
+                    <a class="nav-link nav_link_b" id="play" href="#playpage">PLAY</a>
+                </li>
+                <li class="nav-item nav_op">
+                    <a class="nav-link nav_link_b" id="community" href="#communitypage">COMMUNITY</a>
+                </li>
+                <li class="nav-item nav_op">
+                    <a class="nav-link nav_link_b" id="lbs" href="#leaderboardpage">LEADERBOARD</a>
+                </li>
+            </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+                <div class="row"><br></div>
+            <div class="row">
+
+                <div class="card outercard">
+                    <div class="card-header" style="align-self: center;">BOX SHOOTER</div>
+                    <div class="card-body">
+                        <div class="webgl-content" style="z-index: 10;">
+                            <div id="unityContainer" style="width: 920px; height: 560px;top: 20px;"></div>
+                        </div>
+                    </div>       
+                </div>
+            </div>
+
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            <div class="row"><br> </div>
+            
+            <div class="row">
+                <div class="card infocard">
+                    <div class="card-header" style="align-self: center;">BOX SHOOTER -Ueagle490</div>
+                    <div class="card-body" >
+                        <p>
+                            Box shooter is a first person shooting game, made by user Ueagle490. 
+                            <br>
+                            Instructions:
+                            <ul>
+                                <li>Yellow boxes reduce time.</li>
+                                <li>White Boxes add time</li>
+                                <li>W,A,S,D to move around.</li>
+                                <li>Mouse to aim/look around.</li>
+                                <li>left click to fire</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+                var unityInstance = UnityLoader.instantiate("unityContainer", "Games/Box Shooter/Build/WebGL.json", {onProgress: UnityProgress});
+        </script>
+        <script src="Games/Box Shooter/TemplateData/UnityProgress.js"></script>
+        <script src="Games/Box Shooter/Build/UnityLoader.js"></script>
+        <script src="Transition/transitions.js"></script> <!--script for page transitions-->
+    </body>
+</html>

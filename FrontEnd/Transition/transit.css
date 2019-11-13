@@ -1,0 +1,42 @@
+.arcadia
+{
+    text-shadow: 10px 50px 20px black, 0 0 30px red, 0 0 60px rgb(199, 5, 5);
+}
+
+/*#############for page transition#####################*/
+
+/*make the pages i shall add the transistion at the end once all the pages are ready.*/
+
+/*<link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'> for font 
+<div id="out_square"><div id="out_text"><h1 class="arcadia">ARCADIA</h1></div></div> 
+*/ 
+
+div#out_square
+{
+    visibility: hidden;
+    height: 45%;
+    width: 20%;
+    background-color: black;
+    opacity:1;
+    position: absolute;
+    z-index: 100;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: auto;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+                
+}
+div#out_text
+{
+    opacity: 1;
+    z-index: 100;
+    position: absolute;
+    text-align: center;
+    font-family: 'Bungee Shade';font-size: 22px;
+}
+/*####################################################*/
