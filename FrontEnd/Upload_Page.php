@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?PHP
+require_once("checker.php");
+if(checkSession())
+{
+    header("Location: Login_Page.php");
+    exit;
+}
+?>
 <html>
     <head>
         <title>Upload</title>
