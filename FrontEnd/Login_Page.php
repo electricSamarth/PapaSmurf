@@ -1,4 +1,63 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
+<?php
+require_once('config.php');
+?>
+
+<?php
+
+include("conf_log.php");
+   session_start();
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form 
+      
+      $usr = mysqli_real_escape_string($db,$_POST['usr']);
+      $pswd = mysqli_real_escape_string($db,$_POST['pswd']); 
+      
+      $sql = "SELECT id FROM users WHERE usr = '$usr' and pswd = '$pswd'";
+      $result = mysqli_query($db,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $active = $row['active'];
+      
+      $count = mysqli_num_rows($result);
+      
+      // If result matched $myusername and $mypassword, table row must be 1 row
+        
+      if($count == 1) {
+         
+         $_SESSION['login_user'] = $usr;
+         
+         header("location: welcome.php");
+      }else {
+         $error = "Your Login Name or Password is invalid";
+         echo "retry";
+      }
+   }
+
+// Always start this first
+
+
+/*if ( ! empty( $_POST ) ) {
+    if ( isset( $_POST['usr'] ) && isset( $_POST['pswd'] ) ) {
+        echo "data entered";
+        // Getting submitted user data from database
+        
+        $stmt = $db->prepare("SELECT * FROM users WHERE usr = ?");
+        $result =$stmt->execute([$usr]);
+        $row=fetch_assco();
+        echo "mail : $row['mail'] " 
+
+
+        // Verify user password and set $_SESSION
+        if ( password_verify( $_POST['pswd'], $user->pswd ) ) {
+            $_SESSION['user_id'] = $user->usr;
+            echo "login ok";
+        }
+    }
+}*/
+
+
+?>
 <html>
     <head>
         <title>Login Page</title>
@@ -81,7 +140,7 @@ i<!DOCTYPE html>
         <div class="container">
             <div class="card login_area1 d-flex"> <!--contains the form [inner black card]-->
                 <div class="card-body align-items-center d-flex justify-content-center" style="text-align: center;">
-                    <form action="#action_page.php"><!--link backend-->
+                    <form action="" method="post"><!--link backend-->
                         <div class="form-group">
                           <label for="user" style="align-content: center;">USERNAME</label>
                           <input type="text" class="form-control" id="user" placeholder="Username" style="font-family:Arial, Helvetica, sans-serif;" name="usr">
@@ -90,7 +149,7 @@ i<!DOCTYPE html>
                           <label for="pwd">PASSWORD</label>
                           <input type="password" class="form-control" id="pwd" placeholder="Password" style="font-family:Arial, Helvetica, sans-serif;" name="pswd">
                         </div>
-                        <input type="submit" class="btn btn-primary">
+                        <input type="submit" class="btn btn-primary" name="create" value="hello">
                     </form>
                 </div>
             </div>
