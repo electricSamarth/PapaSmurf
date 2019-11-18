@@ -1,4 +1,36 @@
 <!DOCTYPE html>
+<?PHP
+require_once("checker.php");
+if(checkSession())
+{
+    header("Location: Login_Page.php");
+    exit;
+}
+?>
+<?php
+require_once('config.php');
+?>
+ <?php
+    if (isset($_POST['create'])){
+        $message=$_POST['message'];
+       
+
+        
+
+        $sql="INSERT INTO messages (usr,message) VALUES (?,?)";
+        $stmtinsert = $db->prepare($sql);
+        $w=$_SESSION['login_user'];
+        $result=$stmtinsert->execute([$w,$message]);
+        if($result){
+            echo "Successfully saved.";
+        }else{
+            echo "There was error while saving the data";
+        }
+                
+    }
+    ?>
+
+
 <html>
     <head>
         <title>Forum</title>
@@ -32,7 +64,7 @@
         </style>
     </head>
     <body>
-        
+
         <div class="bg_gradient"></div><!--background gradient.-->
         <div id="out_square"><div id="out_text"><h1 class="arcadia">ARCADIA</h1></div></div><!--Elements for transition-->
         
@@ -68,6 +100,11 @@
      Start a conversation. Join an Existing one. Be an active part of the community! 
      <br>
      <br>
+     <form action="Forum_Page.php" method="post">
+         
+               <textarea name="message" rows="10" cols="30"> hello</textarea>
+               <input type="submit" class="btn btn-primary" name="create" value="sumbit thread">
+        </form>
      (this page will achieve full functionality once the backend is complete)
     </div>
     </body>
