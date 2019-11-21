@@ -9,7 +9,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!--####-->
 
-        <link rel="stylesheet" href="CSS/Site_Style.css">
+        <link rel="stylesheet" href="Site_Style.css">
         <link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Luckiest Guy' rel='stylesheet'>
         <link rel="stylesheet" href="Transition/transit.css">
@@ -83,6 +83,7 @@
                             </div>
                                 <div class="capbox">
                                     <p style="color:white; font-family:Arial, Helvetica, sans-serif;">*Prove you're not a bot. Type the number below:*</p>
+                                    <img src="captcha_code.php"/>
                                     <div id="CaptchaDiv"></div>
                                     <div class="capbox-inner">
                                         <input type="hidden" id="txtCaptcha">
@@ -92,7 +93,7 @@
                 
                                 <div style="text-align:center">  
                                     <input type="submit" class="btn btn-primary">
-                                    <div id="msgSubmit" class="h3 text-center hidden">Message Submitted!</div>
+                                    <div id="msgSubmit" class="h3 text-center" style="visibility:hidden">Message Submitted!</div>
 
                                 </div>  
                         </form>
