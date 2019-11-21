@@ -70,7 +70,7 @@
 
                     <div class="form d-flex">
 
-                        <form onsubmit="return checkform(this);">
+                        <form id="contactform" action="contactform-process.php" method="POST">
                             <div class="form-group">
                                     NAME <input type="text" class="form-control" id="nm"name="Name"style="font-family:Arial, Helvetica, sans-serif;"placeholder="Name" >
                             </div>
@@ -91,7 +91,7 @@
                                 </div>
                 
                                 <div style="text-align:center">  
-                                    <input type="submit" class="btn btn-primary">
+                                    <input type="submit" class="btn btn-primary" onclick="document.getElementById('contactform').submit();>
                                     <div id="msgSubmit" class="h3 text-center" style="visibility:hidden">Message Submitted!</div>
                                 </div>  
                         </form>
@@ -107,6 +107,6 @@
         <div class="text-center py-3" style="color: white;">&copy 2019 Copyright | Papa Smurf</div>
     </footer>
     
- <script src="Captcha/captcha_script.js"></script>
+ <script src="contact_scripts.js"></script>
  <script src="Transition/transitions.js"></script> <!--script for page transitions-->
 </html>

@@ -1,6 +1,3 @@
-$.get('captcha_code.php', function(data) {
-  alert('Captcha!!');
-});
 //jQuery code snippet
 //$("#contactForm").submit(function(event){
     // cancels the form submission
