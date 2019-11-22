@@ -1,39 +1,38 @@
-<!DOCTYPE html>
-<?PHP
-require_once("checker.php");
-if(checkSession())
-{
-    header("Location: Login_Page.php");
-    exit;
-}
-?>
-<?php
-require_once('config.php');
-?>
+ <!DOCTYPE html>
  <?php
-    if (isset($_POST['create'])){
-        $message=$_POST['message'];
-       
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "papasmurf";
 
-        
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-        $sql="INSERT INTO messages (usr,message) VALUES (?,?)";
-        $stmtinsert = $db->prepare($sql);
-        $w=$_SESSION['login_user'];
-        $result=$stmtinsert->execute([$w,$message]);
-        if($result){
-            echo "Successfully saved.";
-        }else{
-            echo "There was error while saving the data";
-        }
-                
+$sql = "SELECT * FROM messages";
+$result = $conn->query($sql);
+
+$var = array();
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        $var1 = $row["usr"]." says: " . $row["message"]."<br>";
+        array_push($var,$var1);
+     // echo "id: " . $row["id"]. " - Name: " . $row["usr"]. " says " . $row["message"]. "<br>";
+      //  echo '<div name="container" style=""><div class="card area1"> </div></div>';
     }
-    ?>
-
-
+} else {
+    echo "0 results";
+}
+$conn->close();
+?> 
 <html>
     <head>
-        <title>Forum</title>
+        <title>Forum Page</title>
         <!--# CDN #-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -45,13 +44,12 @@ require_once('config.php');
         <link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Luckiest Guy' rel='stylesheet'>
         <link rel="stylesheet" href="Transition/transit.css">
-
         <style>
-            .outercard
+            .area1
             {
                 height: 70%;
-                width: 50%;
-                background-color: rgba(0, 0, 0, 0.815);
+                width: 70%;
+                background-color: black;
                 opacity:1;
                 position: absolute;
 	            top:0;
@@ -59,21 +57,28 @@ require_once('config.php');
 	            left: 0;
 	            right: 0;
                 margin: auto;
-                
+                z-index: 50;
             }
+            .post_block
+            {
+                background-color: rgb(0, 0, 0);
+            }
+            hr { display: block; height: 1px;
+    border: 0; border-top: 1px solid #ccc;
+    margin: 1em 0; padding: 0; border-color:white;}
         </style>
+        <script>
+            function f1()
+            { window.location="Forum_subthread.php";}
+        </script>
     </head>
     <body>
-
         <div class="bg_gradient"></div><!--background gradient.-->
         <div id="out_square"><div id="out_text"><h1 class="arcadia">ARCADIA</h1></div></div><!--Elements for transition-->
-        
         <nav class="navbar navbar-expand-sm justify-content-center nav_bar"> <!--navigation bar-->
-            <!--
-            <a class="navbar-brand" href="#">
-                <img src="logo.png" alt="logo" style="width:40px;">
+            <a class="navbar-brand" href="welcome.php">
+                <img src="CSS/logo.png" alt="logo" style="width:40px;">
             </a>
-            -->
             <div id="nvg">
             <ul class="navbar-nav" >
                 <li class="nav-item nav_op" >
@@ -94,21 +99,31 @@ require_once('config.php');
             </ul>
             </div>
         </nav>
-            
-    <div class="outercard"><!--outer translucent card contains header and footer-->
-     <script src="Transition/transitions.js"></script> <!--script for page transitions-->
-     Start a conversation. Join an Existing one. Be an active part of the community! 
-     <br>
-     <br>
-     <form action="Forum_Page.php" method="post">
-         
-               <textarea name="message" rows="10" cols="30"> hello</textarea>
-               <input type="submit" class="btn btn-primary" name="create" value="sumbit thread">
-        </form>
-     (this page will achieve full functionality once the backend is complete)
-    </div>
+
+        <div name="container" style="">
+            <div class="card area1"> 
+                <div class="card-block">
+                    <h1 class="card-title glow" style="text-align: center; font-size: 50px;">POSTS</h1>
+                    <center><button type="button" style="z-index: 100;" onclick="f1();">Add Post</button></center>
+                    
+                    <?php   
+                    foreach($var as $c)
+                    {
+                        echo"$c";
+                        echo'<hr>';
+                    } ?> 
+
+                </div>
+                <div class="card-footer" style="align-self: center;">
+                        
+                </div>
+            </div>
+  
+        </div>
+
     </body>
 
+    <script src="Transition/transitions.js"></script> <!--script for page transitions-->
     <footer class="pg_footer fixed-bottom"> <!-- Page Footer-->
         <div class="text-center py-3" style="color: white;">&copy 2019 Copyright | Papa Smurf</div>
     </footer>

@@ -1,6 +1,8 @@
 <?php
 require_once('config.php');
 ?>
+ <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
 
 <!DOCTYPE html>
 <html>
@@ -47,7 +49,57 @@ require_once('config.php');
                 z-index: 50;
                 margin: auto
             }
+     #form label{float:left; width:140px;}
+    #error_msg{color:red; font-weight:bold;
         </style>
+
+        <script>
+        $(document).ready(function(){
+        var $submitBtn = $("#Sign-Up");
+        var $passwordBox = $("#pswd");
+        var $confirmBox = $("#cpswd");
+        var $errorMsg =  $('<span id="error_msg">Passwords do not match.</span>');
+
+        // This is incase the user hits refresh - some browsers will maintain the disabled state of the button.
+        $submitBtn.removeAttr("disabled");
+
+        function checkMatchingPasswords(){
+            if($confirmBox.val() != "" && $passwordBox.val != ""){
+                if( $confirmBox.val() != $passwordBox.val() ){
+                    $submitBtn.attr("disabled", "disabled");
+                    $errorMsg.insertAfter($confirmBox);
+                }
+            }
+        }
+
+        function resetPasswordError(){
+            $submitBtn.removeAttr("disabled");
+            var $errorCont = $("#error_msg");
+            if($errorCont.length > 0){
+                $errorCont.remove();
+            }  
+        }
+
+
+        $("#cpswd,#pswd")
+             .on("keydown", function(e){
+                /* only check when the tab or enter keys are pressed
+                 * to prevent the method from being called needlessly  */
+                if(e.keyCode == 13 || e.keyCode == 9) {
+                    checkMatchingPasswords();
+                }
+             })
+             .on("blur", function(){                    
+                // also check when the element looses focus (clicks somewhere else)
+                checkMatchingPasswords();
+            })
+            .on("focus", function(){
+                // reset the error message when they go to make a change
+                resetPasswordError();
+            })
+
+    });
+  </script>
     </head>
     
     <body>
@@ -64,7 +116,7 @@ require_once('config.php');
         $stmtinsert = $db->prepare($sql);
         $result=$stmtinsert->execute([$mail,$usr,$pswd]);
         if($result){
-            echo "Successfully saved.";
+            echo "<script>alert('Successfully saved.')</script>";
         }else{
             echo "There was error while saving the data";
         }
@@ -117,11 +169,11 @@ require_once('config.php');
                             </div>
                             <div class="form-group">
                               <label for="pwd">PASSWORD</label>
-                              <input type="password" class="form-control" id="pwd" placeholder="Password" style="font-family:Arial, Helvetica, sans-serif;" name="pswd">
+                              <input type="password" class="form-control" id="pswd" placeholder="Password" style="font-family:Arial, Helvetica, sans-serif;" name="pswd">
                             </div>
                             <div class="form-group">
                                 <label for="cpwd">CONFIRM PASSWORD</label>
-                                <input type="password" class="form-control" id="cpwd" placeholder="Confirm" style="font-family:Arial, Helvetica, sans-serif;" name="cpswd">
+                                <input type="password" class="form-control" id="cpswd" placeholder="Confirm" style="font-family:Arial, Helvetica, sans-serif;" name="cpswd">
                             </div>
                             <input type="submit" class="btn btn-primary" name="create" value="Sign-Up" id="Sign-Up" ></button>
 

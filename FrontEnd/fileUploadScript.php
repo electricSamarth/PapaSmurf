@@ -4,7 +4,7 @@
 
     $errors = []; // Store errors here
 
-    $fileExtensionsAllowed = ['jpeg','jpg','png']; // These will be the only file extensions allowed 
+    $fileExtensionsAllowed = ['jpeg','jpg','png','zip','txt']; // These will be the only file extensions allowed 
 
     $fileName = $_FILES['the_file']['name'];
     $fileSize = $_FILES['the_file']['size'];
@@ -29,6 +29,7 @@
 
         if ($didUpload) {
           echo "The file " . basename($fileName) . " has been uploaded";
+          echo "<script>location='Upload_Page.php';</script>";
         } else {
           echo "An error occurred. Please contact the administrator.";
         }

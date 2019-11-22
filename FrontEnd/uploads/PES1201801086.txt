@@ -1,0 +1,105 @@
+PES1201801086
+Utsav M Jolapara
+3 A 
+
+REPORT
+
+// 1. What is average degree of a vertex in the graph?
+int avgDegree(int **g, int n);
+
+int d : stores the total degree ie. sum of degrees of all vertices. 
+
+loop through the matrix and sum up the degrees. 
+average degree of a vertex = total degree / total no od vertices = d/n
+d=d/n computes average degree. 
+
+return d.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+// 2. Is the graph a regular graph?
+int isRegular(int **g, int n);
+
+int degree: stores degree of first vertex in matrix. 
+
+first loop calculates the degree for that vertex (row index : '0'). 
+
+int cur_degree: stores degree of current vertex. 
+
+second loop calculates the degree of the current vertex, 
+checks with the degree of the first vertex. 
+if the degrees are not equal we return 0 since in a regular graph degrees of all vertices are same.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+// 3. Is the graph a complete graph?
+int isComplete(int **g, int n);
+
+in a complete graph every vertex must be connected to every other. 
+
+the loop traverses through the matrix if at any row(vertex) is not linked to any column we return 0. 
+except when the colum corresponds to the same vertex (ie. no self loops).
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+// 4. Is the graph a cycle graph?
+int isCycleGraph(int **g, int n);
+
+in a cycle graph every vertex must have a degree equal to 2.
+
+the loop checks degree of each vertex, if the vertex degree is not equal to 2 then we return 0 since it fails the condition for cycle 
+graph. 
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+// 5. Is the graph a path graph but not a cycle graph?
+int isPathGraph(int **g, int n);
+
+int degree1: stores number of vertices with degree equal to 1.
+int degree2: stores number of vertices with degree equal to 2.
+
+the function calculates the number of vertices with degree 2 and 1. 
+the condition for path graph but not a cycle graph is that number of vertices with degree 1 must be equal to 2 and that there must not 
+be any isolated vertex or vertex with a degree > than 2. 
+
+if condition is met function returns 1; else 0.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+// 6. Does the graph has an Euler circuit?
+int hasEulerCkt(int **g, int n);
+
+condition for Euler circuit is that each vertex must have an even degree. 
+
+the function calculates the degree of each vertex and checks if its even. 
+at any point if the degree is not even we return 0. 
+else return 1;
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+// 7. Does the graph has an Euler path but not an Euler circuit?
+int hasEulerPath(int **g, int n);
+
+condition: atmost 2 vertices must have a degree that is odd, rest must be even.
+
+int degree_odd: stores number of vertices with odd degree.
+int degree_even: stores number of vertices with even degree.
+
+function calculates the number of vertices with even degree and odd degree.
+if the condition is met the function returns 1; else 0;
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+// 8. Does the graph satisfy the sufficient condition of the Ore's theorem?
+// Sufficient condition for the graph to have a Hamilton according the Ore's theorem:
+// deg(u) + deg(v) ≥ n for every pair of nonadjacent vertices u and v in the graph
+int satifiesOresTheorem(int **g, int n);
+
+int degrees : array (dynamically allocated) stores the degree of each vertex in the graph. 
+
+the second loop runs through the matrix and checks if the vertex is not directly linked ie. not adjecent and if the sum of the degrees 
+of that vertex and the current vertex is not > than n , then condition is not met and we return 0. 
+(i!=j && g[i][j]==0 && (degrees[i]+degrees[j])<n) : fails ores theorem, return 0.
+else return 1.
+
+--------------------------------------------------------------------------------------------------------------------------------------

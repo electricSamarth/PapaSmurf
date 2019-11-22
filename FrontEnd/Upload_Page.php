@@ -37,24 +37,22 @@ if(checkSession())
                 margin: auto;
                 
             }
+            hr { display: block; height: 1px;
+    border: 0; border-top: 1px solid #ccc;
+    margin: 1em 0; padding: 0; border-color:white;}
         </style>
     </head>
     <body>
-        <form action="fileUploadScript.php" method="post" enctype="multipart/form-data">
-        Upload a File:
-        <input type="file" name="the_file" id="fileToUpload">
-        <input type="submit" name="submit" value="Start Upload">
+
     </form>
         
         <div class="bg_gradient"></div><!--background gradient.-->
         <div id="out_square"><div id="out_text"><h1 class="arcadia">ARCADIA</h1></div></div><!--Elements for transition-->
         
         <nav class="navbar navbar-expand-sm justify-content-center nav_bar"> <!--navigation bar-->
-            <!--
-            <a class="navbar-brand" href="#">
-                <img src="logo.png" alt="logo" style="width:40px;">
+            <a class="navbar-brand" href="welcome.php">
+                <img src="CSS/logo.png" alt="logo" style="width:40px;">
             </a>
-            -->
             <div id="nvg">
             <ul class="navbar-nav" >
                 <li class="nav-item nav_op" >
@@ -76,20 +74,30 @@ if(checkSession())
             </div>
         </nav>
             
-    <div class="outercard"><!--outer translucent card contains header and footer-->
+    <div class="outercard "><!--outer translucent card contains header and footer-->
      <script src="Transition/transitions.js"></script> <!--script for page transitions-->
-     Guidelines for Uploading your game:
-     1.
-     2.
-     3.
-     4.
-     5.
-     <br>
-     <br>
-     <br>
-     (this page will achieve full functionality once the backend is complete)
-    </div>
-    </body>
+     <h1 class="card-title glow" style="text-align: center; font-size: 50px;">UPLOAD YOUR GAMES!</h1>
+     <hr>
+     <center>
+            Guidelines for Uploading your game:<br></center>
+            <br>
+            <Center>
+            1.Game build must be webgl. <br>
+            2.Use of any game engine is allowed.<br>
+            3.Games must follow an ESRB rating of E <br>
+            4.Racist content is not acceptable.<br></center>
+            <br>
+            Note: The games you upload will be thoroughly evaluated and will only be put up once they meet all the guidelines.<br>
+            <hr>
+            <form action="fileUploadScript.php" method="post" enctype="multipart/form-data">
+        <center>
+            
+        <input type="file" name="the_file" id="fileToUpload">
+        <input type="submit" name="submit" value="Start Upload" style="display:-block"></center>
+        </div>
+    </body>        
+        
+
 
     <footer class="pg_footer fixed-bottom"> <!-- Page Footer-->
         <div class="text-center py-3" style="color: white;">&copy 2019 Copyright | Papa Smurf</div>

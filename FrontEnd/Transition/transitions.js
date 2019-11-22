@@ -1,26 +1,25 @@
+$(document).ready(function(){
+    $('#nvg').click(transit_out);
 
-document.getElementById("nvg").addEventListener("click",transit_out,true);
-document.getElementById("signup").addEventListener("click",transit_out,true);
-
-
-
+    // Other event handlers.
+});
+//use of jquery
 function transiti(i)
 {
     var ids=["play","community","login","about","contact"];
     id=ids[i];
-    document.getElementById("out_square").style.visibility = "visible";
-    document.getElementById("out_square").style.width= "100%";
-    document.getElementById("out_square").style.height = "100%";
+    $('#out_square').css({visibility:"visible"});
+    $('#out_square').css({width:"100%"});
+    $('#out_square').css({height:"100%"});
     setTimeout(load_page, 1500,id);
 }
 function transit_out(e) //prints logo animation
 {
-    document.getElementById("out_square").style.visibility = "visible";
-    document.getElementById("out_square").style.width= "100%";
-    document.getElementById("out_square").style.height = "100%";
+    $('#out_square').css({visibility:"visible"});
+    $('#out_square').css({width:"100%"});
+    $('#out_square').css({height:"100%"});
     setTimeout(load_page, 1500,e.target.id);
 }
-
 
 function load_page(id_target) //loads next page
 {
@@ -42,7 +41,7 @@ function load_page(id_target) //loads next page
     }
     else if(id_target=="contact")
     {
-        window.location.href = "Contact_Page.html";
+        window.location = "Contact_Page.php"; //to be php
     }
     else if(id_target=="play")
     {
@@ -52,16 +51,16 @@ function load_page(id_target) //loads next page
     {
         window.location.href = "Community_Page.html";
     }
-    else if(id_target=="lbs")
-    {
-        window.location.href = "Leaderboard_Page.html";
-    }
     else if(id_target=="forum")
     {
-        window.location.href = "Forum_Page.html";
+        window.location = "Forum_Page.php";
+    }
+    else if(id_target=="1")
+    {
+        window.location = "Forum_subthread.php";
     }
     else if(id_target=="upload")
     {
-        window.location.href = "Upload_Page.html";
+        window.location = "Upload_Page.php";
     }
 }
